@@ -18,7 +18,8 @@ import com.resultmanagement.resultmanagement.services.AuthServices;
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-	
+
+
 	@Autowired
 	AuthServices authServices;
 	
