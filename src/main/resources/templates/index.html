@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+
+		<title>RMS</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://rawgit.com/vitmalina/w2ui/master/dist/w2ui.min.css">
+		<script src="/js/common/jquery.3.5.1.min.js"></script>
+	    <script type="text/javascript" src="http://w2ui.com/src/w2ui-1.5.min.js"></script>
+	</head>
+	
+	<body>
+		<header th:replace="fragments/header :: header"> </header>
+
+		<div style="margin-top: 70px;">
+		    <button class="w2ui-btn action" data-value='{ "method": "show" }' onclick="openRegistrationPage()">Registration</button>
+		    <button class="w2ui-btn action" data-value='{ "method": "show", "class": "w2ui-light"}' onclick="openSchoolPage()">School</button>
+		    <button class="w2ui-btn action" data-value='{ "method": "show", "class": "w2ui-white" }'>White Theme</button>
+		    <button class="w2ui-btn action" data-value='{ "method": "hide" }'>Hide Tooltip</button>
+		</div>
+		
+		<div id="myForm" style="width: 600px; margin-top: 25px;"></div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+	
+	<script type="module">
+			
+		import { w2utils, w2tooltip, query } from 'https://rawgit.com/vitmalina/w2ui/master/dist/w2ui.es6.min.js'
+		
+		let align = 'none';
+		let position = 'top';
+		let message = '<div style="padding: 4px">The message for the tooltip can be short <br> or long and contain any HTML.</div>'
+		
+		query('input[name=position]').on('click', event => position = event.target.value )
+		query('input[name=align]').on('click', event => align = event.target.value)
+		query('button.action').on('click', event => {
+		    let options = JSON.parse(query(event.target).attr('data-value'));
+		    if (options.method == "show") {
+		       w2tooltip.show(w2utils.extend(options, {
+		            align,
+		            position,
+		            name: 'demo-tooltip',
+		            anchor: event.target,
+		            html: message
+		        }))
+		    }
+		    if (options.method == 'hide') {
+		        w2tooltip.hide('demo-tooltip')
+		    }
+		})
+		
+	</script>
+	
+		<script>
+		function openRegistrationPage(){
+			location.replace("/auth")
+		}
+		
+		function openSchoolPage(){
+			location.replace("/school");
+		}
+	</script>
+	
+	<script src="/js/homedashboard/homedashboard.js"></script>	
+	<script src="/js/school/subjectPopup.js"></script>
+
+	
+</html>

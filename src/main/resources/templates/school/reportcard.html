@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Student Report Card</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://rawgit.com/vitmalina/w2ui/master/dist/w2ui.min.css">
+		<link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.min.css" />
+		<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+		<script src="/js/common/jquery.3.5.1.min.js"></script>
+        <link rel="stylesheet" href="/css/reportcard.css">
+        <script src="/js/school/reportdetails.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    </head>
+   
+   
+   <body>
+            
+            <div id="report">
+                <div id="reportdata">
+
+                    <div style="width: 100%; display: flex;">
+                    <img id="schoolLogo" src="/img/logo.png" />
+                    <div class="schoolDetailsDiv" style="width: 90%;justify-content: center;">
+                        <div style="padding: 20px 40px;" class="text-center">
+                            <h2 id="schoolName">Aryabhatta Technology Public School (Gyan Nikaten)</h2>
+                            <h4 id="schoolRec" style="margin-top: 5px">(RECOGNIGED by Arya Tech)</h4>
+                            <p id="schoolAdd" style="font-size: 13px; margin-top: 5px">(Nelachal Abasan, Hatiara, Rajarhat Gopalpur(M), NewTown, Kol - 157)
+                                <br>(website: www.aryabhattatech.in, mail: aryabhatta@email.com)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Grade Sheet -->
+                <h4 class="text-center m-2" style="">PROGRESS REPORT</h4>
+
+                <!-- Personal Details -->
+                <div style="font-size: 12px;" class="flex">
+                    <div>
+                        <p class="mt-1">NAME</p>
+                        <p class="mt-1">CLASS</p>
+                        <p class="mt-1">SECTION</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1" id="stuName"> Aryan Ananda Parbhakar Kisor</p>
+                        <p class="mt-1" id="stuClass"> 10</p>
+                        <p class="mt-1" id="stuSection"> A</p>
+                    </div>
+
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    <div>
+                        <p class="mt-1">ROLL NO.</p>
+                        <p class="mt-1">STUDENT CODE</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                    </div>
+                    <div class="ml-4">  
+                        <p class="mt-1" id="sturoll"> 26</p>
+                        <p class="mt-1" id="stucode"> STUD-2016-10A26</p>
+                    </div>
+                    <!-- <div>
+                        <img src="img/musk.jpg" style="height: 90px;" class="ml-8"/> 
+                    </div> -->
+                </div>
+
+                <!-- Marks -->
+                <div class="my-8">
+                    <table class="marksTable" style="margin: auto; border: 1px solid black; width: 100%; border-radius: 5px;">
+                        <tr class="marksTableHead" style="background-color: antiquewhite;">
+                            <th>Subjects</th>
+                            <th>Full Marks(100)</th>
+                            <th>Theroy</th>
+                            <th>Practical</th>
+                            <th>Assignment</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                        </tr>
+                        <!--<tr>
+                            <td class="align-start">English Computer Science and Engineering, Civil Engineering, Electrical Engineerig, EEE</td>
+                            <td>100</td>
+                            <td>70</td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>85</td>
+                            <td>A+</td>
+                        </tr>-->
+
+
+                        <tr id="grandTotalRow">
+                            <td class="align-start">Grand Total</td>
+                            <td id="totalFMarks">XXXX</td>
+                            <td colspan="3"></td>
+                            <!-- <td ></td>
+                            <td ></td> -->
+                            <td id="totalGMarks">XXX</td>
+                            <td id="totalGrade">++</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+
+                                <!-- Personal Details -->
+                <div style="font-size: 12px; border: 1px solid black" class="flex">
+                    <div>
+                        <p class="mt-1 align-start">Percentage</p>
+                        <p class="mt-1">Rank</p>
+                        <p class="mt-1">No. of working days</p>
+                        <p class="mt-1">School Attended Days</p>
+                        <p class="mt-1">Attendance %</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                        <p class="mt-1">:</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1" id="totalPercentage">XX %</p>
+                        <p class="mt-1" id="rank">XX</p>
+                        <p class="mt-1" id="noOfWkDays">XX</p>
+                        <p class="mt-1" id="schattdays">XX</p>
+                        <p class="mt-1" id="attper">XX</p>
+                    </div>
+
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    <div>
+                        <p class="mt-1"></p>
+                        <p class="mt-1">Conduct</p>
+                        <p class="mt-1"></p>
+                        <p class="mt-1">Application</p>
+                    </div>
+                    <div class="ml-4">
+                        <p class="mt-1"></p>
+                        <p class="mt-1">:</p>
+                        <p class="mt-1"></p>
+                        <p class="mt-1">:</p>
+                    </div>
+                    <div class="ml-4">  
+                        <p class="mt-1"></p>
+                        <p class="mt-1" id="conduct">Good!!</p>
+                        <p class="mt-1"></p>
+                        <p class="mt-1" id="applicaion">Good!!</p>
+                    </div>
+                    <!-- <div>
+                        <img src="img/musk.jpg" style="height: 90px;" class="ml-8"/> 
+                    </div> -->
+                </div>
+
+                <!-- Signature -->
+                <div class="flex" style="margin-top: 50px">
+                    <div class="flex" style="width: 30%; text-align: center; justify-content: normal; margin-top: 50px">
+                        <p>Date : </p>&emsp;<p id="pubdate">dd/mm/yyyy</p></div>
+                    <div style="width: 35%; text-align: center;">
+                        <img src="/img/sign.png" height="50px" style="margin-left: 120px; width: 100px" />
+                        <p style="font-size: 15px; text-align: end;">Sign. of Class Teacher</p>
+                    </div>
+                    <div style="width:35%; text-align: center; " >
+                        <img src="/img/sign.png" height="50px" style="margin-left: 120px; width: 100px" />
+                        <p style="font-size: 15px; text-align: end;">Sign. of Exam Controller</p>
+                    </div>
+                </div>
+
+				<div style="width: 100%; text-align: center; position: relative; margin-top: 50px; bottom: 0;" >
+					<button class="w2ui-btn w2ui-btn-blue" id="downloadPdf" name="downloadPdf" onclick="window.print()">Print</button>
+				</div>
+
+            </div> <!--report data-->
+        </div>
+    </body>
+</html> 
+
+<!--  -->
+
